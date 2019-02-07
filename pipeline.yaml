@@ -5,6 +5,9 @@ builds:
     chart: cicd-tests
     value: image.repo
     dockerContext: .
+  - image: docker:18.09.0-dind
+    script: scripts/kind-test.sh
+    shell: /bin/sh
 deployments:
   - chart: cicd-tests
     timeout: 600
