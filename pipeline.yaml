@@ -1,0 +1,14 @@
+type: chart
+builds:
+  - image: samsung_cnct/cicd-tests
+    context: cicd-tests
+    chart: cicd-tests
+    value: image.repo
+    dockerContext: .
+deployments:
+  - chart: cicd-tests
+    timeout: 600
+    retries: 2
+    release: cicd-tests
+prod:
+  doDeploy: none
