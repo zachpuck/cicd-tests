@@ -1,7 +1,7 @@
 image:
-  repo: quay.io/samsung_cnct/cicd-tests:0.1.0
-  pullPolicy: Always
+   repo: quay.io/samsung_cnct/cicd-tests:0.1.0
+   pullPolicy: Always
 
 service:
-  type: ClusterIP
-  port: 80
+   type: ClusterIP
+   port: 80
