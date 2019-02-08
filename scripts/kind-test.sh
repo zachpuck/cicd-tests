@@ -1,6 +1,6 @@
 #!/bin/sh
 
-kind create cluster --wait=10m --loglevel=debug --name test
+kind create cluster --loglevel=debug --name test
 
 export KUBECONFIG="$(kind get kubeconfig-path --name="test")"
 
