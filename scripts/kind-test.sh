@@ -13,7 +13,7 @@ go get sigs.k8s.io/kind
 curl -L https://storage.googleapis.com/kubernetes-release/release/v1.13.0/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl
 chmod +x /usr/local/bin/kubectl
 
-kind create cluster --loglevel=debug --name test
+kind create cluster --wait=10m --loglevel=debug --name test
 
 export KUBECONFIG="$(kind get kubeconfig-path --name="test")"
 
