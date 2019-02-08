@@ -5,7 +5,7 @@ builds:
     chart: cicd-tests
     value: image.repo
     dockerContext: .
-  - image: docker.io/zachpuck/kind-ci:0.0.1
+  - image: docker.io/zachpuck/kind-ci:0.1.0
     script: scripts/kind-test.sh
     shell: /bin/sh
 deployments:
