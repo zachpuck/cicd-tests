@@ -9,9 +9,9 @@ builds:
     script: scripts/kind-test.sh
     shell: /bin/sh
 deployments:
-  - chart: cicd-tests
-    timeout: 600
-    retries: 2
-    release: cicd-tests
+#  - chart: cicd-tests
+#    timeout: 600
+#    retries: 2
+#    release: cicd-tests
 prod:
   doDeploy: none
