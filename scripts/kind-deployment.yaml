@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    run: kind-test
+  name: kind-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: kind-test
+  template:
+    metadata:
+      labels:
+        run: kind-test
+    spec:
+      containers:
+      - image: zachpuck/kind-ci:0.0.4
+        imagePullPolicy: Always
+        name: kind-test
+        securityContext:
+          privileged: true
+        command: [ "/bin/sh" ]
+        args: ["-c", "while true; do echo hello; sleep 1000000;done"]
+        volumeMounts:
+        - mountPath: /lib/modules
+          name: modules
+          readOnly: true
+        - mountPath: /sys/fs/cgroup
+          name: cgroup
+      volumes:
+      - name: modules
+        hostPath:
+          path: /lib/modules
+      - name: cgroup
+        hostPath:
+          path: /sys/fs/cgroup
+
+

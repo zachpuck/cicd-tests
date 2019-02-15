@@ -1,0 +1,44 @@
+name: build-kind
+description: build kind container
+inputs:
+  context:
+    dir:
+      description: context for build
+      default: .
+  dockerfile:
+    file:
+      description: Local Image Dockerfile
+      default: build/docker/build-kind/Dockerfile
+  imageName:
+    string:
+      description: "Name the container image IE container_name:latest (as in what would use for `docker build -t <...>`)"
+      default: zachpuck/kind-ci:0.0.4
+  username:
+    string:
+      constraints: { minLength: 1 }
+      description: username for auth w/ registry
+      default: zachpuck
+  password:
+    string:
+      constraints: { minLength: 1 }
+      description: password for auth w/ registry
+      isSecret: true
+run:
+  serial:
+  - op:
+      ref: github.com/opspec-pkgs/docker.image.build#2.1.0
+      inputs:
+        imageName:
+        context:
+        dockerfile:
+        password:
+        username:
+      outputs:
+        imageTar:
+  - op:
+      ref: github.com/opspec-pkgs/docker.image.push#2.1.0
+      inputs:
+        imageName:
+        imageTar:
+        password:
+        username:
